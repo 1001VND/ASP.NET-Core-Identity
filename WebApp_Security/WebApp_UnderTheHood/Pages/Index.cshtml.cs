@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebApp_UnderTheHood.Pages
 {
-    [Authorize]
+    [Authorize] //từ chối người dùng ẩn danh
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;

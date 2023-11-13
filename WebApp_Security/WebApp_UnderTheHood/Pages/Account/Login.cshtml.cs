@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using WebApp_UnderTheHood.Authorization;
 
 namespace WebApp_UnderTheHood.Pages.Account
 {
@@ -28,12 +29,13 @@ namespace WebApp_UnderTheHood.Pages.Account
                     new Claim("Department", "HR"),
                     new Claim("Admin", "any"),
                     new Claim("Manager", "any"),
-                    new Claim("EmploymentDate", "2023-10-29")
+                    new Claim("EmploymentDate", "2023-07-29")
                 };
 
                 var identity = new ClaimsIdentity(claims, "MyCookieAuth");
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(identity);
 
+                // xác nhận cookie liên tục
                 var authProperties = new AuthenticationProperties
                 {
                     IsPersistent = Credential.RememberMe
@@ -46,17 +48,5 @@ namespace WebApp_UnderTheHood.Pages.Account
 
             return Page();
         }
-    }
-
-    public class Credential
-    {
-        [Required]
-        [Display(Name = "User Name")]
-        public string UserName { get; set; } = string.Empty;
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; } = string.Empty;
-		[Display(Name = "Remember Me")]
-		public bool RememberMe { get; set; }
     }
 }
